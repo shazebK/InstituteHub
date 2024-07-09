@@ -1,7 +1,5 @@
+import MainAuth from "../MainAuth";
+
 export default function Login(){
-    return (
-        <div>
-            Login Page
-        </div>
-    )
+    return <MainAuth login = {true}/>
 }
