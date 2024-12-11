@@ -45,7 +45,7 @@ export default function MainAuth({ login: initialLogin }) {
 
             // Redirect to homepage after successful login/signup
             router.push("/"); // Redirect to the homepage
-
+            
         } catch (error) {
             setMessage(error.message);
         }

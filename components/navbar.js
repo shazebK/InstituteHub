@@ -23,6 +23,19 @@ export default function Navbar() {
         }
     }, []);
 
+    const handleLogout = () => {
+        // Delete the userEmail from localStorage
+        localStorage.removeItem("userEmail");
+        // Reset the state
+        setUserName(null);
+    };
+
+    const confirmLogout = () => {
+        if (window.confirm("Do you want to log out?")) {
+            handleLogout();
+        }
+    };
+
     return (
         <nav className={`w-screen ${menuVisible ? "h-screen" : "h-16"} flex flex-col md:flex-row justify-around items-center bg-white shadow-md px-4 fixed top-0 z-50`}>
             <div className="w-full h-16 flex justify-between items-center">
@@ -36,8 +49,14 @@ export default function Navbar() {
                 <li className={`${path === "/" && "text-orange-500"}`}><Link href="/">Home</Link></li>
                 <li className={`${path.startsWith("/events") && "text-orange-500"}`}><Link href="/events">Events</Link></li>
 
+                {!userName && <li className={`${path === "/new-resource" && "text-orange-500"}`}><Link href="/new-resource">Request</Link></li>}
+
+                {userName && <li className={`${path === "/new-event" && "text-orange-500"}`}><Link href="/new-event">Add Event</Link></li>}
+                {userName && <li className={`${path === "/new-announcement" && "text-orange-500"}`}><Link href="/new-announcement">Announce</Link></li>}
+                {userName && <li className={`${path === "/resource-requests" && "text-orange-500"}`}><Link href="/resource-requests">Requests</Link></li>}
+
                 {userName ? (
-                    <li className="text-lg font-semibold">{userName}</li>
+                    <li className="text-lg font-semibold cursor-pointer" onClick={confirmLogout}>{userName}</li>
                 ) : (
                     <Link href="/auth/login">
                         <button className="w-28 h-10 p-2 mx-4 flex justify-center items-center rounded-md text-black hover:bg-black hover:text-white border-black border-2 transition duration-200 ease-in-out">
