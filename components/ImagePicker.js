@@ -13,7 +13,7 @@ export default function ImagePicker({max_images}){
             return URL.createObjectURL(file);
         });
 
-        setSelectedImages(prevState => )
+        setSelectedImages(prevState => imagesArray);
     };
 
     const removeImage = (index) => {
