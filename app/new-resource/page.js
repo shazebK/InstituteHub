@@ -38,7 +38,7 @@ export default function ResourceRequestForm() {
       date: new Date().toLocaleDateString(),
     });
     if (response.ok) {
-      alert("Event was created successfully");
+      alert("Request sent successfully");
       setFormData({
         name: '',
         contactEmail: '',
